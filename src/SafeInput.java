@@ -235,6 +235,7 @@ public class SafeInput {
     public static String getRegExString(Scanner pipe, String prompt, String regEx) {
         String retString; // stores input
         boolean matchFound; // loop ender
+        Pattern pattern = Pattern.compile(regEx);
 
         do {
             System.out.print("\n" + prompt + ":\n"); // print prompt
@@ -247,7 +248,7 @@ public class SafeInput {
             within the same statement, check if it matches the string collected from the user.
             end loop and return that match if it does.
              */
-            matchFound = Pattern.compile(regEx).matcher(retString).matches();
+            matchFound = pattern.matcher(retString).find();
 
             // if it doesn't match, print error.
             if (!matchFound) {
