@@ -27,19 +27,19 @@ public class PersonGenerator {
             Person person = new Person();
 
             // gets id
-            person.id = SafeInput.getRegExString(scanner, "Enter id", "[0-9]+");
+            person.setID(SafeInput.getRegExString(scanner, "Enter id", "[0-9]+"));
 
             // gets first name
-            person.firstName = SafeInput.getRegExString(scanner, "Enter first name", "[A-Za-z]+");
+            person.setFirstName(SafeInput.getRegExString(scanner, "Enter first name", "[A-Za-z]+"));
 
             // gets last name
-            person.lastName = SafeInput.getRegExString(scanner, "Enter last name", "[A-Za-z]+");
+            person.setLastName(SafeInput.getRegExString(scanner, "Enter last name", "[A-Za-z]+"));
 
             // gets title
-            person.title = SafeInput.getRegExString(scanner, "Enter title (e.g. Mr., Mrs., etc.)", "([A-Za-z])+.?");
+            person.setTitle(SafeInput.getRegExString(scanner, "Enter title (e.g. Mr., Mrs., etc.)", "([A-Za-z])+.?"));
 
             // gets year of birth
-            person.yearOfBirth = SafeInput.getRangedInt(scanner, "Enter year of birth", 1, 2023);
+            person.setYearOfBirth(SafeInput.getRangedInt(scanner, "Enter year of birth", 1, 2023));
 
             // asks for confirmation
             boolean edit = SafeInput.getYNConfirm(scanner, "Would you like to edit? (y/n)");
@@ -48,11 +48,11 @@ public class PersonGenerator {
             while (edit)
             {
                 // shows the edit options
-                System.out.println("\n1. ID: " + person.id + "\n" +
-                        "2. First name: " + person.firstName + "\n" +
-                        "3. Last name: " + person.lastName + "\n" +
-                        "4. Title: " + person.title + "\n" +
-                        "5. Year of birth: " + person.yearOfBirth);
+                System.out.println("\n1. ID: " + person.getID() + "\n" +
+                        "2. First name: " + person.getFirstName() + "\n" +
+                        "3. Last name: " + person.getLastName() + "\n" +
+                        "4. Title: " + person.getTitle() + "\n" +
+                        "5. Year of birth: " + person.getYearOfBirth());
 
                 // gets their choice
                 int toEdit = SafeInput.getRangedInt(scanner, "Enter the item you'd like to change (1-5) or 6 to cancel", 1, 6);
@@ -61,19 +61,19 @@ public class PersonGenerator {
                 switch (toEdit)
                 {
                     case 1 -> {
-                        person.id = SafeInput.getRegExString(scanner, "Enter id", "[0-9]");
+                        person.setID(SafeInput.getRegExString(scanner, "Enter id", "[0-9]+"));
                     }
                     case 2 -> {
-                        person.firstName = SafeInput.getRegExString(scanner, "Enter first name", "[A-Za-z]+");
+                        person.setFirstName(SafeInput.getRegExString(scanner, "Enter first name", "[A-Za-z]+"));
                     }
                     case 3 -> {
-                        person.lastName = SafeInput.getRegExString(scanner, "Enter last name", "[a-zA-Z]+");
+                        person.setLastName(SafeInput.getRegExString(scanner, "Enter last name", "[a-zA-Z]+"));
                     }
                     case 4 -> {
-                        person.title = SafeInput.getRegExString(scanner, "Enter title (e.g. Mr., Mrs., etc.)", "([A-Za-z])+.?");
+                        person.setTitle(SafeInput.getRegExString(scanner, "Enter title (e.g. Mr., Mrs., etc.)", "([A-Za-z])+.?"));
                     }
                     case 5 -> {
-                        person.yearOfBirth = SafeInput.getRangedInt(scanner, "Enter year of birth", 1, 2023);
+                        person.setYearOfBirth(SafeInput.getRangedInt(scanner, "Enter year of birth", 1, 2023));
                     }
                     case 6 -> {
                         // if they chose to cancel, sets edit to false to break the edit loop

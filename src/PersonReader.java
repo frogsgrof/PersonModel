@@ -51,97 +51,34 @@ public class PersonReader {
                 throw new RuntimeException(e);
             }
 
-            // prints out the header to the table
-            String tableHeader = "ID%6s | First Name%2s | Last Name%3s | Title | YOB%n";
-            System.out.printf(tableHeader, " ", " ", " ");
-
-            for (int i = 0; i < tableHeader.length(); i++)
-                System.out.print("=");
+            // for storing each String in peopleData after splitting them
+            String[] personElems;
 
             // iterates through each person in the list, separating the elements and printing them in table format
             for (String line : peopleData) {
 
-                // for storing the person object
-                Person person = new Person();
+                // splits the String into the array
+                personElems = line.split(", ", 5);
 
-                // instantiates default widths for the table (one for each column)
-                // in the printf function, these are used to mark the empty space
-                int width1 = 8,
-                        width2 = 12,
-                        width3 = 12,
-                        width4 = 5,
-                        width5 = 4;
-
-                // for marking endpoints of data elements in order to make substrings
-                int left;
-                int right;
-
-                // the right pointer starts at zero and increments until it hits a comma
-                for (right = 0; right < line.length() && line.charAt(right) != ','; right++);
-
-                // then it sets the ID as a substring between zero and the index of the comma
-                person.id = line.substring(0, right);
-
-                // since the width variables are for counting the whitespace, if the ID's length exceeds the default
-                // width, it gets set to zero.
-                if (person.id.length() > width1)
-                    width1 = 0;
-                // otherwise, the length of the string gets subtracted from the whitespace.
-                else
-                    width1 -= person.id.length();
-
-                // now the left pointer is initialized. Since right marks the comma separator, right + 2 would
-                // put the pointer at the first character of the person's first name.
-                left = right + 2;
-
-                // this whole process repeats for each person in the file.
-                for (right = left; right < line.length() && line.charAt(right) != ','; right++);
-                person.firstName = line.substring(left, right);
-
-                if (person.firstName.length() > width2)
-                    width2 = 0;
-                else
-                    width2 -= person.firstName.length();
-
-                left = right + 2;
-                for (right = left; right < line.length() && line.charAt(right) != ','; right++);
-                person.lastName = line.substring(left, right);
-
-                if (person.lastName.length() > width3)
-                    width3 = 0;
-                else
-                    width3 -= person.lastName.length();
-
-                left = right + 2;
-                for (right = left; right < line.length() && line.charAt(right) != ','; right++);
-                person.title = line.substring(left, right);
-
-                if (person.title.length() > width4)
-                    width4 = 0;
-                else
-                    width4 -= person.title.length();
-
-                person.yearOfBirth = Integer.parseInt(line.substring(right + 2));
-
-                if (line.length() - right + 2 > width5)
-                    width5 = 0;
-                else
-                    width5 -= (line.length() - right + 2);
+                // passes all the array elements into the Person constructor
+                Person person = new Person(personElems[0], personElems[1],
+                        personElems[2], personElems[3], Integer.parseInt(personElems[4]));
 
                 // adds the completed person to the list
                 people.add(person);
-
-                // MOVE THIS!
-                // before the loop continues to the next person in the file, it prints out the full row to console
-                System.out.printf("%n" + person.id + "%" + width1 + "s | " + person.firstName + "%" + width2 + "s | " + person.lastName + "%" + width3 + "s | " + person.title + "%" + width4 + "s | " + person.yearOfBirth, " ", " ", " ", " ");
             }
 
-            // iterates through list of Persons
-            for (Person person : people) {
+            // finally prints the table
 
-            }
-
+            // table header
+            System.out.printf("%8s   %16s   %16s   %5s   %4s%n", "ID", "FIRST NAME", "LAST NAME", "TITLE", "YOB");
+            int len = 8 + 16 + 16 + 5 + 4 + 12;
+            for (int i = 0; i < len; i++)
+                System.out.print("=");
             System.out.println();
+
+            for (Person person : people)
+                System.out.println(person.getTableRow());
         }
     }
 
