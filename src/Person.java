@@ -111,7 +111,7 @@ public class Person {
     }
 
     public String formalName() {
-        return title + fullName();
+        return title + " " + fullName();
     }
 
     public String getAge() {
