@@ -21,19 +21,6 @@ class PersonTest {
     }
 
     @Test
-    void Person(String id, String firstName, String lastName, int yearOfBirth) {
-        p5 = new Person("000005", "Kevin", "Kevin", 2000);
-        assertNotNull(p5);
-    }
-
-    @Test
-    void Person(String firstName, String lastName, int yearOfBirth) {
-        p5 = new Person("Water", "Bottle", "Mr.", 2023);
-        assertNotNull(p5);
-        assertNotNull(p5.getID());
-    }
-
-    @Test
     void Person() {
         p5 = new Person();
         assertNotNull(p5);

@@ -27,7 +27,7 @@ public class PersonGenerator {
             Person person = new Person();
 
             // gets id
-            person.setID(SafeInput.getRegExString(scanner, "Enter id", "[0-9]+"));
+            person.setID(SafeInput.getRegExString(scanner, "Enter ID", "[0-9]+"));
 
             // gets first name
             person.setFirstName(SafeInput.getRegExString(scanner, "Enter first name", "[A-Za-z]+"));
@@ -36,7 +36,7 @@ public class PersonGenerator {
             person.setLastName(SafeInput.getRegExString(scanner, "Enter last name", "[A-Za-z]+"));
 
             // gets title
-            person.setTitle(SafeInput.getRegExString(scanner, "Enter title (e.g. Mr., Mrs., etc.)", "([A-Za-z])+.?"));
+            person.setTitle(SafeInput.getRegExString(scanner, "Enter title (e.g. Mr., Mrs., etc.)", "([A-Za-z])+[.]?"));
 
             // gets year of birth
             person.setYearOfBirth(SafeInput.getRangedInt(scanner, "Enter year of birth", 1, 2023));

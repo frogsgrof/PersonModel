@@ -81,6 +81,4 @@ public class PersonReader {
                 System.out.println(person.getTableRow());
         }
     }
-
-
 }
